@@ -1,0 +1,53 @@
+﻿@model ContactBook.Models.Contact
+
+@{
+    ViewData["Title"] = "Detalles de Contacto";
+}
+
+<div class="text-center">
+    <p>DETALLES DE CONTACTO.</p>
+</div>
+
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.favoriteBeer)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+       
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.name)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.age)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.gender)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.email)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.favoriteBeer)
+            </td>
+
+        </tr>
+        
+    </tbody>
+</table>

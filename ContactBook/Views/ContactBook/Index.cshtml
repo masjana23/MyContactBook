@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ContactBook.Models.Contact>
+
+@{
+    ViewData["Title"] = "Pagina de Inicio";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Bienvenidos</h1>
+    <p>MIS CONTACTOS</a>.</p>
+</div>
+
+<a asp-controller="ContactBook" asp-action="Create">Crear Contacto</a>
+
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.ID">@Html.DisplayFor(modelItem => item.name)</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID">editar</a>  
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

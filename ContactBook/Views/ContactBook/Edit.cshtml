@@ -1,0 +1,98 @@
+﻿@model ContactBook.Models.Contact
+
+@{
+    ViewData["Title"] = "Editar Contacto";
+}
+
+
+<div class="text-center">
+    <p>EDITAR CONTACTO.</p>
+</div>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="ID" />
+    <div>
+
+        <div>
+            <label asp-form="name">Nombre: </label>
+            <div>
+                @Html.TextBoxFor(m => m.name)
+                <span asp-validation-for="name" class="text-color:red;"></span>
+            </div>
+        </div>
+        <div>
+            <label asp-form="age">Edad: </label>
+            <div>
+                <input asp-for="age" type="number" name="age" min="1" max="120" onchange="onchangeevent()" />
+                <span asp-validation-for="age" class="text-color:red;"></span>
+            </div>
+        </div>
+        <div>
+            <label asp-form="gender">Genero: </label>
+            <div>
+                <select asp-for="gender" asp-items="Html.GetEnumSelectList<GenderEnum>()">
+                    <option selected="selected" value="">Selecciona</option>
+                </select>
+                <span asp-validation-for="gender" class="text-color:red;"></span>
+            </div>
+        </div>
+        <div>
+            <label asp-form="email">Email: </label>
+            <div>
+                @Html.TextBoxFor(m => m.email)
+                <span asp-validation-for="email" class="text-color:red;"></span>
+            </div>
+        </div>
+
+        <div id="beerDiv">
+            <label asp-form="favoriteBeer">Cerveza favorita: </label>
+            <div>
+                @Html.TextAreaFor(m => m.favoriteBeer,
+                                               new
+                                               {
+                                                   @value = "Cerveza",
+                                                   @class = "red",
+                                                   @cols = "30",
+                                                   @rows = "2",
+                                                   @title = "Cual es tu cerveza favorita?",
+                                                   @style = "background-color:white;",
+                                                   @maxlength = "30"
+                                               })
+
+                <span asp-validation-for="favoriteBeer" class="text-color:red;"></span>
+            </div>
+        </div>
+
+
+        <div>
+            <div>
+                <input type="submit" value="Editar" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@*@section Scripts {*@
+
+    <script>
+
+        $(document).ready(function () {
+            var textBeer = document.getElementById("favoriteBeer");
+            textBeer.disabled = !@Model.isAdult();
+        });
+
+        function onchangeevent() {
+            var age = document.getElementById("age");
+            var textBeer = document.getElementById("favoriteBeer");
+
+            if (age.value < @Model.getAdultAge()){
+                    textBeer.disabled = true;
+                textBeer.value = '';
+            } else {
+                    textBeer.disabled = false;
+            }
+        }
+
+
+    </script>
+@*}*@
